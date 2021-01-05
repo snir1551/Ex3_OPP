@@ -1,5 +1,6 @@
 from src.GraphInterface import GraphInterface
 from typing import Dict
+from typing import List
 from src.node_data import NodeData
 from src.edge_data import EdgeData
 
@@ -22,7 +23,7 @@ class DiGraph(GraphInterface):
         return self.__mc
 
     def add_edge(self, id1: int, id2: int, weight: float) -> bool:
-        if id1 in self.__dictNode and id2 in self.__dictNode and id2 not in self.__dictEdgeOut.get(id1):
+        if id1 in self.__dictNode and id2 in self.__dictNode and weight >= 0 and id2 not in self.__dictEdgeOut.get(id1):
             edge = EdgeData(id1, weight, id2)
             self.__dictEdgeOut.get(id1).update({id2: edge})
             self.__dictEdgeIn.get(id2).update({id1: edge})
@@ -44,18 +45,28 @@ class DiGraph(GraphInterface):
             return False
 
     def remove_node(self, node_id: int) -> bool:
+
         if node_id in self.__dictNode:
-            len1 = len(self.__dictEdgeOut.get(node_id))
-            len2 = len(self.__dictEdgeIn.get(node_id))
-            self.__mc += len1
-            self.__edge_size -= len1
-            self.__mc += len2
-            self.__edge_size -= len2
+            if self.__dictEdgeOut.get(node_id) is not None:
+                list_keys = []
+                for i in self.__dictEdgeOut.get(node_id).keys():
+                    list_keys.append(i)
+                for i in list_keys:
+                    self.remove_edge(node_id, i)
+
+            if self.__dictEdgeIn.get(node_id) is not None:
+                list_keys = []
+                for i in self.__dictEdgeIn.get(node_id).keys():
+                    list_keys.append(i)
+                for i in list_keys:
+                    self.remove_edge(i, node_id)
+
             self.__dictEdgeOut.pop(node_id)
             self.__dictEdgeIn.pop(node_id)
-            self.__mc += 1
             self.__dictNode.pop(node_id)
+            self.__mc += 1
             return True
+
         else:
             return False
 
