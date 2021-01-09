@@ -1,4 +1,7 @@
-class NodeData:
+from src.NodeDataInterface import NodeDataInterface
+
+
+class NodeData(NodeDataInterface):
 
     def __init__(self, key: int, position: tuple):
         self.__key = key
@@ -13,7 +16,7 @@ class NodeData:
     def get_pos(self) -> tuple:
         return self.__position
 
-    def get_weight(self):
+    def get_weight(self) -> float:
         return self.__weight
 
     def set_weight(self, weight):
@@ -30,6 +33,12 @@ class NodeData:
 
     def set_tag(self, tag):
         self.__tag = tag
+
+    def encoder(self):
+        return {
+            'id': self.get_key(),
+            'position': self.__position
+        }
 
     def __eq__(self, o: object) -> bool:
         if type(o) is not NodeData:
@@ -48,6 +57,16 @@ class NodeData:
             return False
         return True
 
+    def __lt__(self, other):
+        if self.__weight == other.__weight:
+            return True
+        else:
+            return self.__weight < other.__weight
+
     def __str__(self):
         return "NodeData(key: %s , position: %s , information: %s  , weight : %s  , tag: %s)" % (
             self.__key, self.__position, self.__info, self.__weight, self.__tag)
+
+    def __repr__(self):
+        return "%s" % (
+            self.__key)

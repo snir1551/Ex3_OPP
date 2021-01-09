@@ -1,23 +1,26 @@
+import json
+import math
 from typing import List, Dict
 from queue import PriorityQueue
+
+from src.DiGraph import DiGraph
 from src.GraphInterface import GraphInterface
 from src.GraphAlgoInterface import GraphAlgoInterface
-from src.node_data import NodeData
+from src.NodeData import NodeData
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 class GraphAlgo(GraphAlgoInterface):
 
-    def __init__(self, graph: GraphInterface):
+    def __init__(self, graph: GraphInterface = None):
         self.__graph = graph
 
     def get_graph(self) -> GraphInterface:
+        """
+         @return: the directed graph on which the algorithm works on.
+        """
         return self.__graph
-
-    def save_to_json(self, file_name: str) -> bool:
-        pass
-
-    def shortest_path(self, id1: int, id2: int) -> (float, list):
-        pass
 
     def connected_component(self, id1: int) -> list:
         pass
@@ -26,23 +29,129 @@ class GraphAlgo(GraphAlgoInterface):
         pass
 
     def plot_graph(self) -> None:
+        # graph = DiGraph()
+        # graph.add_node(0, (0, 2, 3))
+        # graph.add_node(1, (3, 3, 4))
+        # graph.add_node(2, (1, 4, 5))
+        # graph.add_node(3, (2, 4, 5))
+        # graph.add_node(4, (1, 4, 5))
+        # graph.add_node(5, (5, 4, 5))
+        # graph.add_node(6, (4, 4, 5))
+        # graph.add_node(7, (0, 4, 5))
+        # listX = []
+        # listY = []
+        # listZ = []
+        # for n in self.__graph.get_all_v().values():
+        #    n: NodeData
+        #    x, y, z = n.get_pos()
+        #    listX.append(x)
+        #    listY.append(y)
+        #    listZ.append(z)
+        # plt.plot(listX,listY,listZ)
+        # plt.scatter([0], [0])
+        # plt.show()
         pass
 
+    # =================== Shortest Path Function =================== #
+    def shortest_path(self, id1: int, id2: int) -> (float, list):
+        list = []
+        nodes: Dict[int, NodeData] = self.__graph.get_all_v()
+        if nodes[id1] is None or nodes[id2] is None:
+            return None
+        if id1 is id2:
+            list.append(nodes[id1])
+            return list
+
+        pv: Dict[int, NodeData] = self.dijkstra(nodes[id1])
+        if nodes[id2].get_info().__eq__("WHITE"):
+            return None
+
+        list.append(nodes[id2])
+        node: NodeData = pv.get(id2)
+
+        while node is not None:
+            list.append(nodes[node.get_key()])
+            node = pv.get(node.get_key())
+        list.reverse()
+        return nodes[id2].get_weight(), list
+
+    # =================== Encoder Function =================== #
+    def encoder(self):
+        dict_nodes = self.get_graph().get_all_v()
+        dic = {"Edges": [],
+               "Nodes": [NodeData.encoder(node) for node in list(dict_nodes.values())]}
+        for node in dict_nodes.keys():
+            for dest, w in self.__graph.all_out_edges_of_node(node).items():
+                dic["Edges"].append({"src": node, "w": w, "dest": dest})
+        return dic
+
+    # =================== Save To Json Function =================== #
+    def save_to_json(self, file_name: str) -> bool:
+
+        try:
+            with open(file_name, "w", encoding='utf-8') as file:
+                json.dump(self.encoder(), fp=file, indent=4)
+                return True
+        except IOError as e:
+            print(e)
+            return False
+
+    # =================== Load From Json Function =================== #
     def load_from_json(self, file_name: str) -> bool:
-        pass
+        load_graph = DiGraph()
+        try:
+            with open(file_name, "r") as file:
+                dict_graph = json.load(file)
+                for nodes in dict_graph["Nodes"]:
+                    if "position" in nodes:
+                        pos = nodes["position"]
+                        load_graph.add_node(nodes["id"], pos)
+                    else:
+                        load_graph.add_edge(nodes["id"])
+                for edges in dict_graph["Edges"]:
+                    load_graph.add_edge(edges["src"], edges["dest"], edges["w"])
+        except IOError as e:
+            print(e)
+            return False
+        self.__graph = load_graph
+        return True
 
-    def dijkstra(self, node: NodeData) -> Dict[int, NodeData]:
-        queue1 = PriorityQueue()
-        map_path = Dict[int, NodeData]
-        for ni in self.__graph.get_all_v().values():
-            NodeData.set_weight(ni, float('inf'))
-            NodeData.set_info(ni, "WHITE")
-            map_path.update({NodeData.get_key(ni): None})
-            queue1.put(ni)
+    # =================== Algorithm dijkstra =================== #
+    def dijkstra(self, start_node: NodeData):
+        nodes = self.__graph.get_all_v()
+        q = PriorityQueue()
+        path: Dict[int, NodeData] = dict()
+        q.put(start_node)
+        for n in nodes.values():
+            node: NodeData = n
+            node.set_weight(math.inf)
+            node.set_info("WHITE")
+            path[n.get_key()] = None
+        start_node.set_weight(0)
+        while not q.empty():
+            v: NodeData = q.get()
+            for k, w in self.__graph.all_out_edges_of_node(v.get_key()).items():
+                n: NodeData = nodes[k]
+                weight = v.get_weight() + w
+                if weight < n.get_weight():
+                    q.put(n)
+                    n.set_weight(weight)
+                    path[n.get_key()] = v
+            v.set_info("BLACK")
+        return path
 
-        NodeData.set_weight(node, 0)
-        queue1.get()
 
+if __name__ == '__main__':
+    graph = DiGraph()
+    graph.add_node(1, (30, 20, 10))
+    graph.add_node(2, (5, 5, 5))
+    graph.add_node(3, (80, 70, 60))
+    graph.add_edge(1, 2, 30)
+    graphAlgo = GraphAlgo(graph)
+    graphAlgo.save_to_json("file1")
+    graphAlgo.load_from_json("file1")
+    graph = graphAlgo.get_graph()
+    print(graph)
 
 """
  public HashMap<Integer, node_data> dijkstra(node_data node)

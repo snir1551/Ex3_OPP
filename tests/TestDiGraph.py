@@ -1,7 +1,7 @@
 import unittest
 from src.DiGraph import DiGraph
-from src.node_data import NodeData
-from src.edge_data import EdgeData
+from src.NodeData import NodeData
+from src.EdgeData import EdgeData
 
 
 class TestDiGraph(unittest.TestCase):
@@ -42,12 +42,12 @@ class TestDiGraph(unittest.TestCase):
         self.assertTrue(is_add_edge)
         self.assertTrue(graph.e_size() == 1)
         is_add_edge = graph.add_edge(1, 2, 40)
-        # we had edge : 1->2 so he didn't add him
-        self.assertFalse(is_add_edge)
+        # we had edge but the weight change : 1->2 w=40
+        self.assertTrue(is_add_edge)
         self.assertTrue(graph.e_size() == 1)
         is_add_edge = graph.add_edge(1, 2, 50)
-        # we had edge : 1->2 so he didn't add him
-        self.assertFalse(is_add_edge)
+        # we had edge but the weight change : 1->2 so he change the weight but not add edge
+        self.assertTrue(is_add_edge)
         self.assertTrue(graph.e_size() == 1)
         is_add_edge = graph.add_edge(2, 1, 50)
         # edge: 2->1
