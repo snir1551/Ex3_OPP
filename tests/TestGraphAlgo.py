@@ -117,10 +117,10 @@ class MyTestCase(unittest.TestCase):
         x, y = g_algo.shortest_path(1, 5)  # check1
         self.assertTrue(x == 20)
         ans_list1 = [1, 3, 6, 5]
-        self.assertEqual(y,ans_list1)
+        self.assertEqual(y, ans_list1)
         print(y)
         for i in range(len(y)):
-            self.assertEqual(int(y[i]),int(ans_list1[i]))
+            self.assertEqual(int(y[i]), int(ans_list1[i]))
 
         # x, y = g_algo.shortest_path(2, 5)  # check2
         # print(y)
@@ -161,5 +161,6 @@ class MyTestCase(unittest.TestCase):
         # p = g_algo3.shortest_path(1, 3)
         # print(p)
 
-        if __name__ == '__main__':
-            unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()
