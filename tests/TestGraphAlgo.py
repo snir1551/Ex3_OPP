@@ -1,7 +1,7 @@
 import math
 import unittest
 from src.DiGraph import DiGraph
-# from src.GraphAlgo import GraphAlgo
+from src.GraphAlgo import GraphAlgo
 from src.GraphAlgo import GraphAlgo
 
 

@@ -7,7 +7,7 @@ from src.DiGraph import DiGraph
 from src.GraphInterface import GraphInterface
 from src.GraphAlgoInterface import GraphAlgoInterface
 from src.NodeData import NodeData
-# import matplotlib.pyplot as my_plot
+import matplotlib.pyplot as my_plot
 import random
 
 
