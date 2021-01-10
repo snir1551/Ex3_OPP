@@ -146,6 +146,9 @@ class DiGraph(GraphInterface):
         """
         return self.__dictEdgeOut.get(id1)
 
+    def get_node(self, key: int) -> NodeData:
+        return self.__dictNode[key]
+
     def __update_in_out_size(self, node1, node2):
         self.__dictNode[node1].set_counter_edges_out(len(self.__dictEdgeOut[node1].keys()))
         self.__dictNode[node2].set_counter_edges_in(len(self.__dictEdgeIn[node2].keys()))

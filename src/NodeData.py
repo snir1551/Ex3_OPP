@@ -3,11 +3,11 @@ from src.NodeDataInterface import NodeDataInterface
 
 class NodeData(NodeDataInterface):
 
-    def __init__(self, key: int, position: tuple):
+    def __init__(self, key: int, pos: tuple = None):
         self.__key = key
         self.__tag = 0
         self.__info = ""
-        self.__position = position
+        self.__pos = pos
         self.__weight = 0
         self.__counter_edges_in = 0
         self.__counter_edges_out = 0
@@ -16,10 +16,10 @@ class NodeData(NodeDataInterface):
         return self.__key
 
     def get_pos(self) -> tuple:
-        return self.__position
+        return self.__pos
 
-    def set_pos(self,tup:tuple) :
-        self.__position=tup
+    def set_pos(self, pos: tuple):
+        self.__pos = pos
 
     def get_weight(self) -> float:
         return self.__weight
@@ -52,9 +52,12 @@ class NodeData(NodeDataInterface):
         self.__counter_edges_out = counter_edges_out
 
     def encoder(self):
+        if self.get_pos() is None:
+            return {
+                'id': self.get_key()}
         return {
             'id': self.get_key(),
-            'position': self.__position
+            'pos': self.get_pos()
         }
 
     def __eq__(self, o: object) -> bool:
@@ -64,7 +67,7 @@ class NodeData(NodeDataInterface):
             return False
         elif self.__key != NodeData.get_key(o):
             return False
-        elif self.__position != NodeData.get_pos(o):
+        elif self.get_pos() != NodeData.get_pos(o):
             return False
         elif self.__tag != NodeData.get_tag(o):
             return False
@@ -82,7 +85,7 @@ class NodeData(NodeDataInterface):
 
     def __str__(self):
         return "NodeData(key: %s , position: %s , information: %s  , weight : %s  , tag: %s)" % (
-            self.__key, self.__position, self.__info, self.__weight, self.__tag)
+            self.__key, self.get_pos(), self.__info, self.__weight, self.__tag)
 
     def __repr__(self):
         return f"{self.__key}: |edges out| {self.get_counter_edges_out()} |edges in| {self.get_counter_edges_in()}"

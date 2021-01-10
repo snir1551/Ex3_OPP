@@ -226,7 +226,6 @@ class GraphAlgo(GraphAlgoInterface):
         return path_lists
 
     def plot_graph(self) -> None:
-        pass
         listX = []
         listY = []
         for n in self.__graph.get_all_v().values():
@@ -252,8 +251,9 @@ class GraphAlgo(GraphAlgoInterface):
                 x2 = dest1.get_pos()[0]
                 y2 = dest1.get_pos()[1]
 
-                my_plot.arrow(x1, y1, (x2 - x1), (y2 - y1),
-                          length_includes_head=True, width=0.000003, head_width=1.00015)
+                my_plot.arrow(x1, y1, (x2 - x1), (y2 - y1), length_includes_head=True,
+                              width=0.000001, head_width=0.00030, color='black')
+
             # print number vertexs
 
         my_plot.show()
@@ -309,9 +309,13 @@ class GraphAlgo(GraphAlgoInterface):
             with open(file_name, "r") as file:
                 dict_graph = json.load(file)
                 for nodes in dict_graph["Nodes"]:
-                    if "position" in nodes:
-                        pos = nodes["position"]
-                        load_graph.add_node(nodes["id"], pos)
+                    if "pos" in nodes:
+                        pos = nodes["pos"]
+                        x, y, z = str.split(pos, ",")
+                        x = float(x)
+                        y = float(y)
+                        z = float(z)
+                        load_graph.add_node(nodes["id"], (x, y, z))
                     else:
                         load_graph.add_node(nodes["id"])
                 for edges in dict_graph["Edges"]:
