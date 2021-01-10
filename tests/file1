@@ -1,0 +1,19 @@
+{
+    "Edges": [
+        {
+            "src": 1,
+            "w": 7,
+            "dest": 2
+        }
+    ],
+    "Nodes": [
+        {
+            "id": 1,
+            "position": null
+        },
+        {
+            "id": 2,
+            "position": null
+        }
+    ]
+}

@@ -7,7 +7,7 @@ from src.DiGraph import DiGraph
 from src.GraphInterface import GraphInterface
 from src.GraphAlgoInterface import GraphAlgoInterface
 from src.NodeData import NodeData
-import matplotlib.pyplot as my_plot
+# import matplotlib.pyplot as my_plot
 import random
 
 
@@ -265,8 +265,8 @@ class GraphAlgo(GraphAlgoInterface):
         if self.__graph is None or id1 not in self.__graph.get_all_v() or id2 not in self.__graph.get_all_v():
             return math.inf, []
         if id1 is id2:
-            list.append(nodes[id1])
-            return list
+            list.append(nodes[id1].get_key())
+            return 0, list
 
         pv: Dict[int, NodeData] = self.dijkstra(nodes[id1])
         if nodes[id2].get_info().__eq__("WHITE"):
