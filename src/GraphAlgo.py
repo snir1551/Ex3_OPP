@@ -10,9 +10,10 @@ from src.NodeData import NodeData
 import matplotlib.pyplot as my_plot
 import random
 
+
 class GraphAlgo(GraphAlgoInterface):
 
-    def __init__(self, graph = DiGraph()):
+    def __init__(self, graph=DiGraph()):
         self.__graph = graph
 
     def get_graph(self) -> GraphInterface:
@@ -120,7 +121,7 @@ class GraphAlgo(GraphAlgoInterface):
         path = []
 
         for i in self.__graph.get_all_v().keys():
-            lows.update({i:0})
+            lows.update({i: 0})
             ids.update({i: 0})
             onStack.update({i: False})
 
@@ -183,7 +184,7 @@ class GraphAlgo(GraphAlgoInterface):
 
         for x in self.__graph.get_all_v().keys():
             if ids.get(x) == 0:
-                v=x
+                v = x
                 work = [(v, 0)]
                 while work:
                     v, i = work[-1]  # i is next successor to process.
@@ -225,6 +226,7 @@ class GraphAlgo(GraphAlgoInterface):
         return path_lists
 
     def plot_graph(self) -> None:
+        pass
         listX = []
         listY = []
         for n in self.__graph.get_all_v().values():
@@ -237,20 +239,21 @@ class GraphAlgo(GraphAlgoInterface):
                 listX.append(n.get_pos()[0])
                 listY.append(n.get_pos()[1])
 
-        my_plot.plot(listX,listY,"*","blue")
+        my_plot.scatter(listX, listY, color="black", s=50)
+
         for src in self.__graph.get_all_v().keys():
             for dest in self.__graph.all_out_edges_of_node(src).keys():
-                print(src,dest)
+                print(src, dest)
                 src1 = self.__graph.get_all_v().get(src)
                 dest1 = self.__graph.get_all_v().get(dest)
 
-                x1=src1.get_pos()[0]
-                y1=src1.get_pos()[1]
-                x2=dest1.get_pos()[0]
-                y2=dest1.get_pos()[1]
+                x1 = src1.get_pos()[0]
+                y1 = src1.get_pos()[1]
+                x2 = dest1.get_pos()[0]
+                y2 = dest1.get_pos()[1]
 
-                my_plot.arrow(x1,y1,(x2-x1),(y2-y1),length_includes_head=True,
-                                     width=0.0001,head_width=0.0001, color='black')
+                my_plot.arrow(x1, y1, (x2 - x1), (y2 - y1),
+                          length_includes_head=True, width=0.000003, head_width=1.00015)
             # print number vertexs
 
         my_plot.show()
@@ -273,7 +276,7 @@ class GraphAlgo(GraphAlgoInterface):
         node: NodeData = pv.get(id2)
 
         while node is not None:
-            list.insert(0,node.get_key())
+            list.insert(0, node.get_key())
             node = pv.get(node.get_key())
 
         return nodes[id2].get_weight(), list

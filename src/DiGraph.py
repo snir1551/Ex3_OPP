@@ -48,6 +48,8 @@ class DiGraph(GraphInterface):
                 self.__edge_size += 1
             self.__dictEdgeOut.get(id1).update({id2: weight})
             self.__dictEdgeIn.get(id2).update({id1: weight})
+            self.__update_in_out_size(id1, id2)
+
             self.__mc += 1
             return True
         else:
@@ -116,6 +118,7 @@ class DiGraph(GraphInterface):
         if node_id1 in self.__dictNode and node_id2 in self.__dictNode and node_id2 in self.__dictEdgeOut.get(node_id1):
             self.__dictEdgeOut.get(node_id1).pop(node_id2)
             self.__dictEdgeIn.get(node_id2).pop(node_id1)
+            self.__update_in_out_size(node_id1, node_id2)
             self.__mc += 1
             self.__edge_size -= 1
             return True
@@ -143,6 +146,10 @@ class DiGraph(GraphInterface):
         """
         return self.__dictEdgeOut.get(id1)
 
+    def __update_in_out_size(self, node1, node2):
+        self.__dictNode[node1].set_counter_edges_out(len(self.__dictEdgeOut[node1].keys()))
+        self.__dictNode[node2].set_counter_edges_in(len(self.__dictEdgeIn[node2].keys()))
+
     def __eq__(self, o: object) -> bool:
         """
 
@@ -153,10 +160,5 @@ class DiGraph(GraphInterface):
         """
 
         """
-        str_graph = "|V|={} , |E|={} , MC={}\n".format(self.v_size(), self.e_size(), self.get_mc())
-        for key in self.__dictNode.keys():
-            str_graph += "{}:\n".format(self.__dictNode[key])
-            str_graph += "edges_out: {}:\n".format(self.__dictEdgeOut[key])
-            str_graph += "edges_in: {}:\n".format(self.__dictEdgeIn[key])
-            str_graph += "\n"
+        str_graph = "Graph: |V|={} , |E|={}".format(self.v_size(), self.e_size())
         return str_graph

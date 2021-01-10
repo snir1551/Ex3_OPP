@@ -9,12 +9,17 @@ class NodeData(NodeDataInterface):
         self.__info = ""
         self.__position = position
         self.__weight = 0
+        self.__counter_edges_in = 0
+        self.__counter_edges_out = 0
 
     def get_key(self) -> int:
         return self.__key
 
     def get_pos(self) -> tuple:
         return self.__position
+
+    def set_pos(self,tup:tuple) :
+        self.__position=tup
 
     def get_weight(self) -> float:
         return self.__weight
@@ -33,6 +38,18 @@ class NodeData(NodeDataInterface):
 
     def set_tag(self, tag):
         self.__tag = tag
+
+    def get_counter_edges_in(self) -> int:
+        return self.__counter_edges_in
+
+    def set_counter_edges_in(self, counter_edges_in: int):
+        self.__counter_edges_in = counter_edges_in
+
+    def get_counter_edges_out(self) -> int:
+        return self.__counter_edges_out
+
+    def set_counter_edges_out(self, counter_edges_out: int):
+        self.__counter_edges_out = counter_edges_out
 
     def encoder(self):
         return {
@@ -68,5 +85,4 @@ class NodeData(NodeDataInterface):
             self.__key, self.__position, self.__info, self.__weight, self.__tag)
 
     def __repr__(self):
-        return "%s" % (
-            self.__key)
+        return f"{self.__key}: |edges out| {self.get_counter_edges_out()} |edges in| {self.get_counter_edges_in()}"
