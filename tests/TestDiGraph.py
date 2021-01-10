@@ -1,10 +1,11 @@
 import unittest
 from src.DiGraph import DiGraph
 from src.NodeData import NodeData
+from unittest import TestCase
 from src.EdgeData import EdgeData
 
 
-class TestDiGraph(unittest.TestCase):
+class TestDiGraph(TestCase):
     def test_add_node(self):
         graph = DiGraph()
         self.assertTrue(graph.v_size() == 0)
