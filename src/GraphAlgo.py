@@ -7,8 +7,6 @@ from src.DiGraph import DiGraph
 from src.GraphInterface import GraphInterface
 from src.GraphAlgoInterface import GraphAlgoInterface
 from src.NodeData import NodeData
-import numpy as np
-import matplotlib.pyplot as plt
 
 
 class GraphAlgo(GraphAlgoInterface):
@@ -57,7 +55,7 @@ class GraphAlgo(GraphAlgoInterface):
         list = []
         nodes: Dict[int, NodeData] = self.__graph.get_all_v()
         if nodes[id1] is None or nodes[id2] is None:
-            return None
+            return float('inf'), []
         if id1 is id2:
             list.append(nodes[id1])
             return list
