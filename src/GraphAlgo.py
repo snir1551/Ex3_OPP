@@ -225,38 +225,7 @@ class GraphAlgo(GraphAlgoInterface):
 
         return path_lists
 
-    def plot_graph(self) -> None:
-        listX = []
-        listY = []
-        for n in self.__graph.get_all_v().values():
-            if n.get_pos() is None:
-                tup = (random.uniform(0, 50), random.uniform(0, 50))
-                n.set_pos(tup)
-                listX.append(n.get_pos()[0])
-                listY.append(n.get_pos()[1])
-            else:
-                listX.append(n.get_pos()[0])
-                listY.append(n.get_pos()[1])
 
-        my_plot.scatter(listX, listY, color="black", s=50)
-
-        for src in self.__graph.get_all_v().keys():
-            for dest in self.__graph.all_out_edges_of_node(src).keys():
-                print(src, dest)
-                src1 = self.__graph.get_all_v().get(src)
-                dest1 = self.__graph.get_all_v().get(dest)
-
-                x1 = src1.get_pos()[0]
-                y1 = src1.get_pos()[1]
-                x2 = dest1.get_pos()[0]
-                y2 = dest1.get_pos()[1]
-
-                my_plot.arrow(x1, y1, (x2 - x1), (y2 - y1), length_includes_head=True,
-                              width=0.000001, head_width=0.00030, color='black')
-
-            # print number vertexs
-
-        my_plot.show()
 
     # =================== Shortest Path Function =================== #
     def shortest_path(self, id1: int, id2: int) -> (float, list):
@@ -350,26 +319,71 @@ class GraphAlgo(GraphAlgoInterface):
             v.set_info("BLACK")
         return path
 
+    # =================== Plot Graph =================== #
+    def plot_graph(self) -> None:
+        listX = []
+        listY = []
+        #img = my_plot.imread("../backgroundGame.png")
+        #fig, ax = my_plot.subplots()
+        for n in self.__graph.get_all_v().values():
+            if n.get_pos() is None:
+                tup = (random.uniform(0, 50), random.uniform(0, 50))
+                n.set_pos(tup)
+                listX.append(n.get_pos()[0])
+                listY.append(n.get_pos()[1])
+            else:
+                listX.append(n.get_pos()[0])
+                listY.append(n.get_pos()[1])
+
+
+
+        maxX1 = 0
+        maxY1 = 0
+        for src in self.__graph.get_all_v().keys():
+            for dest, w in self.__graph.all_out_edges_of_node(src).items():
+                src1 = self.__graph.get_all_v().get(src)
+                dest1 = self.__graph.get_all_v().get(dest)
+                r = 0.0001
+                x1 = src1.get_pos()[0]
+                y1 = src1.get_pos()[1]
+                x2 = dest1.get_pos()[0]
+                y2 = dest1.get_pos()[1]
+                print(w)
+                my_plot.arrow(x1, y1, (x2 - x1), (y2 - y1), length_includes_head=True,
+                              width=0.000001, head_width=0.00009, color='black')
+                if x1 > x2:
+                    if x1 > maxX1:
+                        maxX1 = x1
+                else:
+                    if x2 > maxX1:
+                        maxX1 = x2
+                if y1 > y2:
+                    if y1 > maxY1:
+                        maxX1 = x1
+                else:
+                    if y2 > maxY1:
+                        maxY1 = y2
+
+            # print number vertexs
+        my_plot.scatter(listX, listY, color="red", s=50)
+        #my_plot.figure(figsize=(20, 10))
+        #my_plot.gcf().set_size_inches(20, 10)
+        my_plot.title("Our Graph")
+        my_plot.show()
 
 if __name__ == '__main__':
-    graph = DiGraph()
-    graph.add_node(1, (30, 20, 10))
-    graph.add_node(2, (5, 5, 5))
-    graph.add_node(3, (80, 70, 60))
-    graph.add_node(4, (80, 70, 60))
-    graph.add_edge(1, 2, 30)
-    graph.add_edge(2, 3, 30)
-    graph.add_edge(3, 1, 30)
-    graph.add_edge(3, 4, 30)
-    graphAlgo = GraphAlgo(graph)
-    # graphAlgo.save_to_json("file1")
-    # graphAlgo.load_from_json("file1")
-    # graph = graphAlgo.get_graph()
-    print(graphAlgo.connected_components())
-    print(graphAlgo.connected_component(4))
-    print(graphAlgo.connected_component(3))
-    print(graphAlgo.connected_component(2))
-    print(graphAlgo.connected_component(1))
+    def test_plot_graph(self):
+        graph = self.graph_creator(10, 20)
+
+        NodeData.set_pos(graph.nodes.get(2), 2, 5)
+        NodeData.set_pos(graph.nodes.get(8), 8, 7.41)
+        NodeData.set_pos(graph.nodes.get(1), 10, 10)
+        NodeData.set_pos(graph.nodes.get(8), 14, 6)
+
+        algo_g = GraphAlgo(graph)
+        algo_g.load_from_json("../data/A5")
+        algo_g.plot_graph()
+
 
 """
 

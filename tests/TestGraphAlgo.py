@@ -1,9 +1,11 @@
 import math
 import unittest
+
+from src import NodeData
 from src.DiGraph import DiGraph
 from src.GraphAlgo import GraphAlgo
 from src.GraphAlgo import GraphAlgo
-
+from random import seed, randrange, random
 
 def first_graph():
     graph = DiGraph()
@@ -113,104 +115,30 @@ def three_graph():
 
 class MyTestCase(unittest.TestCase):
 
-    def test_shortest_path(self):
-        print("graph2")
-        g_algo = GraphAlgo(second_graph())
-        x, y = g_algo.shortest_path(1, 5)  # check1
-        self.assertTrue(x == 20)
-        ans_list1 = [1, 3, 6, 5]
-        self.assertEqual(y, ans_list1)
-
-        x, y = g_algo.shortest_path(2, 5)  # check2
-        self.assertTrue(x == 21)
-        ans_list1 = [2, 4, 5]
-        self.assertEqual(y, ans_list1)
-
-        print("graph3")
-        g_algo2 = GraphAlgo(three_graph())
-        x, y = g_algo2.shortest_path(1, 5)  # check3 node5 not connected
-        self.assertTrue(x == math.inf)
-        self.assertTrue(y == [])
-        x, y = g_algo2.shortest_path(5, 5)  # check4 node5 not connected and solo
-        self.assertTrue(x == 0)
-        ans_list1 = [5]
-        self.assertEqual(y, ans_list1)
-        x, y = g_algo2.shortest_path(1, 6)  # check5
-        self.assertTrue(x == 11)
-        ans_list1 = [1, 3, 6]
-        self.assertEqual(y, ans_list1)
-        x, y = g_algo2.shortest_path(1, 3)  # check6
-        self.assertTrue(x == 9)
-        ans_list1 = [1, 3]
-        self.assertEqual(y, ans_list1)
-        x, y = g_algo2.shortest_path(1, 4)  # check7
-        self.assertTrue(x == 20)
-        ans_list1 = [1, 3, 4]
-        self.assertEqual(y, ans_list1)
-        g_algo2.get_graph().remove_edge(1, 3)  # remove edge between node1 and node3
-        x, y = g_algo2.shortest_path(1, 4)  # check8
-        self.assertTrue(x == 22)
-        ans_list1 = [1, 2, 4]
-        self.assertEqual(y, ans_list1)
-        x, y = g_algo2.shortest_path(1, 1)  # check9
-        self.assertTrue(x == 0)
-        ans_list1 = [1]
-        self.assertEqual(y, ans_list1)
-
-        print("graph4")
-        """
-        0->1->2->3
-           1<-
-        """
-        graph4 = DiGraph()
-        g_algo3 = GraphAlgo(graph4)
-        graph4.add_node(0)
-        graph4.add_node(1)
-        graph4.add_node(2)
-        graph4.add_node(3)
-        graph4.add_edge(1, 2, 11)
-        graph4.add_edge(2, 1, 11)
-        graph4.add_edge(2, 3, 5)
-        graph4.add_edge(1, 0, 3)
-        x, y = g_algo3.shortest_path(2, 0)
-        self.assertTrue(x == 14)  # check10
-        ans_list1 = [2, 1, 0]
-        self.assertEqual(y, ans_list1)
-        graph4.remove_node(2)  # remove node2
-        x, y = g_algo3.shortest_path(1, 2)  # node not exist
-        self.assertTrue(x == math.inf)
-        self.assertTrue(y == [])
-        x, y = g_algo3.shortest_path(2, 2)  # node not exist
-        self.assertTrue(x == math.inf)
-        self.assertTrue(y == [])
-
-        # print("graph5")
-        # graph5 = DiGraph()
-        # g_algo5 = GraphAlgo(graph5)
-        # for i in range(0, 8):
-        #     graph5.add_node(i)
-        # for i in range(0, 8):
-        #     graph5.add_edge(i, i + 1, i + 1)
-        # for i in range(0, 8):
-        #     x, y = g_algo3.shortest_path(i, 11)
-        #     self.assertTrue(x == math.inf)
-        #     self.assertTrue(y == [])
-        #     print(x)
-
-    def test_save_to_json(self):
+    def graph_creator(self, num_of_nodes: int, num_of_ed: int):
+        seed(1)
         graph = DiGraph()
-        g_algo = GraphAlgo(graph)
-        graph.add_node(1)
-        graph.add_node(2)
-        graph.add_edge(1, 2, 7)
-        g_algo.save_to_json("file1")
+        i = 0
+        while i < num_of_nodes:
+            graph.add_node(i)
+            i = i + 1
+        while graph.e_size() < num_of_ed:
+            rnd = randrange(0, num_of_nodes)
+            rnd2 = randrange(0, num_of_nodes)
+            rnd3 = random()
+            graph.add_edge(rnd, rnd2, rnd3 * 100)
+        return graph
 
-    def test_load_from_json(self):
-        g_algo = GraphAlgo(None)
-        g_algo.load_from_json("file1")
-        g_algo_check = g_algo
-        print(g_algo_check.get_graph().get_mc())
+    def test_plot_graph(self):
+        graph = self.graph_creator(10, 20)
+        NodeData.set_pos(graph.get_all_v().get(2), 2, 5)
+        NodeData.set_pos(graph.get_all_v().get(8), 8, 7.41)
+        NodeData.set_pos(graph.get_all_v().get(1), 10, 10)
+        NodeData.set_pos(graph.get_all_v().get(8), 14, 6)
 
+        algo_g = GraphAlgo(graph)
+        algo_g.load_from_json("../data/A5")
+        algo_g.plot_graph()
 
 if __name__ == '__main__':
     unittest.main()
