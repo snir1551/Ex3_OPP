@@ -60,7 +60,7 @@ class NodeData(NodeDataInterface):
             'pos': self.get_pos()
         }
 
-    def __eq__(self, o: object) -> bool:
+    def __eq__(self, o) -> bool:
         if type(o) is not NodeData:
             return False
         if o.__class__ != self.__class__:

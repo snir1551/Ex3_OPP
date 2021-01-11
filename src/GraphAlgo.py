@@ -309,14 +309,14 @@ class GraphAlgo(GraphAlgoInterface):
             with open(file_name, "r") as file:
                 dict_graph = json.load(file)
                 for nodes in dict_graph["Nodes"]:
-                    if "pos" in nodes:
+                    try:
                         pos = nodes["pos"]
                         x, y, z = str.split(pos, ",")
                         x = float(x)
                         y = float(y)
                         z = float(z)
                         load_graph.add_node(nodes["id"], (x, y, z))
-                    else:
+                    except Exception:
                         load_graph.add_node(nodes["id"])
                 for edges in dict_graph["Edges"]:
                     load_graph.add_edge(edges["src"], edges["dest"], edges["w"])
@@ -372,10 +372,6 @@ if __name__ == '__main__':
     print(graphAlgo.connected_component(1))
 
 """
-
-
-
-
     /**
      * Tarjan's strongly connected components algorithm
      * finding the strongly connected components (SCCs) of a directed graph.
@@ -383,23 +379,19 @@ if __name__ == '__main__':
      */
     private List<List<node_data>> tarjan() {
         List<List<node_data>> components = new ArrayList<>();
-
         Stack<node_data> stack = new Stack<>();
         int time = 0;
         for(node_data nodeData : graph.getV()) {
             nodeData.setTag(0); // lowlink
             nodeData.setInfo("white"); // set all to not-visited
         }
-
         for(node_data nodeData : graph.getV()) {
             if(nodeData.getInfo().equals("white")) { // not visited
                 dfs(nodeData, time, stack, components);
             }
         }
-
         return components;
     }
-
     /**
      * DFS is an algorithm for traversing or searching tree or graph data structures.
      * The algorithm starts at the root node (selecting some arbitrary node as the root node in the case of a graph)
@@ -415,10 +407,8 @@ if __name__ == '__main__':
         nodeData.setInfo("black");
         stack.add(nodeData);
         boolean componentRoot = true;
-
         for(edge_data edge: graph.getE(nodeData.getKey())) {
             node_data neighbor = graph.getNode(edge.getDest());
-
             if(neighbor.getInfo().equals("white")) { // not visited
                 dfs(neighbor, time, stack, components);
             }
@@ -427,21 +417,19 @@ if __name__ == '__main__':
                 componentRoot = false;
             }
         }
-
         if(componentRoot) {
             List<node_data> component = new ArrayList<>();
-
             while(true) {
                 node_data nd = stack.pop();
                 component.add(nd);
                 nd.setTag(Integer.MAX_VALUE);
-
                 if(nd.getKey() == nodeData.getKey()) {
                     break;
                 }
             }
-
             components.add(component);
         }
     }
 """
+
+

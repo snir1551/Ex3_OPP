@@ -80,7 +80,9 @@ def check2():
     print(dist, path)
     dist, path = g_algo.shortest_path(2, 20)
     print(dist, path)
+    print("liron checck")
     print(g_algo.connected_component(0))
+    print("liron checck2")
     print(g_algo.connected_components())
     g_algo.plot_graph()
 
