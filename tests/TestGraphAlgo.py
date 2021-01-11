@@ -1,5 +1,7 @@
 import math
 import unittest
+
+from src import NodeData
 from src.DiGraph import DiGraph
 from src.GraphAlgo import GraphAlgo
 from src.NodeData import NodeData
