@@ -5,7 +5,6 @@ class NodeData(NodeDataInterface):
 
     def __init__(self, key: int, pos: tuple = None):
         self.__key = key
-        self.__tag = 0
         self.__info = ""
         self.__pos = pos
         self.__weight = 0
@@ -33,12 +32,6 @@ class NodeData(NodeDataInterface):
     def set_info(self, info):
         self.__info = info
 
-    def get_tag(self):
-        return self.__tag
-
-    def set_tag(self, tag):
-        self.__tag = tag
-
     def get_counter_edges_in(self) -> int:
         return self.__counter_edges_in
 
@@ -60,20 +53,18 @@ class NodeData(NodeDataInterface):
             'pos': self.get_pos()
         }
 
-    def __eq__(self, o) -> bool:
-        if type(o) is not NodeData:
+    def __eq__(self, other) -> bool:
+        if type(other) is not NodeData:
             return False
-        if o.__class__ != self.__class__:
+        if other.__class__ != self.__class__:
             return False
-        elif self.__key != NodeData.get_key(o):
+        elif self.__key != NodeData.get_key(other):
             return False
-        elif self.get_pos() != NodeData.get_pos(o):
+        elif self.get_pos() != NodeData.get_pos(other):
             return False
-        elif self.__tag != NodeData.get_tag(o):
+        elif self.__info != NodeData.get_info(other):
             return False
-        elif self.__info != NodeData.get_info(o):
-            return False
-        elif self.__weight != NodeData.get_weight(o):
+        elif self.__weight != NodeData.get_weight(other):
             return False
         return True
 
