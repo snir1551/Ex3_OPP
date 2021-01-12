@@ -46,16 +46,4 @@ class NodeDataInterface(ABC):
         """
         pass
 
-    @abstractmethod
-    def get_tag(self) -> int:
-        """
 
-        """
-        pass
-
-    @abstractmethod
-    def set_tag(self, tag):
-        """
-
-        """
-        pass

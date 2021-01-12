@@ -261,6 +261,32 @@ class TestDiGraph(TestCase):
         self.assertTrue(graph.get_mc() == 16)
         self.assertTrue(graph.e_size() == 0)
 
+        graph_check = DiGraph()
+        self.assertTrue(graph_check.get_mc() == 0)
+        self.assertTrue(graph_check.v_size() == 0)
+        self.assertTrue(graph_check.e_size() == 0)
+        graph_check.add_node(1)
+        graph_check.add_node(2)
+        graph_check.add_node(3)
+        graph_check.add_node(4)
+        graph_check.add_edge(1, 2, 10)
+        graph_check.add_edge(3, 4, 20)
+        self.assertTrue(graph_check.get_mc() == 6)
+
+        graph_check.add_edge(3, 3, 50)
+
+        self.assertTrue(graph_check.get_mc() == 6)
+
+        graph_check.add_edge(3, 4, 5)
+
+        self.assertTrue(graph_check.get_mc() == 7)
+
+        graph_check.add_edge(3, 4, -5)
+        self.assertTrue(graph_check.get_mc() == 7)
+
+
+
+
     def test_all_in_edges_of_node(self):
         graph = DiGraph()
 
