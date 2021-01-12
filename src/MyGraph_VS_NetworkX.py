@@ -1,28 +1,53 @@
 import json
-import networkx as nx
-from networkx.readwrite import json_graph
-from unittest import TestCase
-import time
-import matplotlib.pyplot as plt
+import networkx as nxlib
+import timeit
 from GraphAlgo import GraphAlgo
 
 
-class MyGraphVSNetworkX:
-   pass
+def NetworkX():
+    g = nxlib.DiGraph()
+    nodes = [10, 100, 1000, 10000, 20000, 30000]
+    edges = [80, 800, 8000, 80000, 160000, 240000]
+    for ve, ed in zip(nodes, edges):
+        with open(f"../data/G_{ve}_{ed}_0.json", 'r') as file:
+            object = json.load(file)
 
-if __name__ == '__main__':
+        for x in object['Nodes']:
+            g.add_node(int(x.get('id')))
 
+        for x in object['Edges']:
+            g.add_edge(int(x.get('src')), int(x.get('dest')), weight=float(x.get('w')))
+
+        start = timeit.default_timer()
+        nxlib.shortest_path(g, source=1, target=3, method="dijkstra", weight="weight")
+        stop = timeit.default_timer()
+        print("time Shortest path NetworkX", stop - start)
+        start = timeit.default_timer()
+        nxlib.strongly_connected_components(g)
+        stop = timeit.default_timer()
+        print("time components NetworkX", stop - start)
+
+
+def MyGraph():
     nodes = [10, 100, 1000, 10000, 20000, 30000]
     edges = [80, 800, 8000, 80000, 160000, 240000]
     graph_algo = GraphAlgo()
     for ve, ed in zip(nodes, edges):
         graph_algo.load_from_json(f"../data/G_{ve}_{ed}_0.json")
-        start_time = time.time()
+        start = timeit.default_timer()
+        graph_algo.shortest_path(1, 3)
+        stop = timeit.default_timer()
+        print("time Shortest path MyGraph", stop - start)
+        start = timeit.default_timer()
         graph_algo.connected_components()
-        our_time = time.time() - start_time
-        start_time = time.time()
-        nx_time = time.time() - start_time
+        stop = timeit.default_timer()
+        print("time components MyGraph", stop - start)
+        start = timeit.default_timer()
+        graph_algo.connected_component(1)
+        stop = timeit.default_timer()
+        print("time component MyGraph", stop - start)
 
-        print("our connected_component: ", our_time)
-        print("nx connected_component: ", nx_time)
-        # g.plot_graph()
+
+if __name__ == '__main__':
+    NetworkX()
+    MyGraph()

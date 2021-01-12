@@ -553,6 +553,18 @@ class MyTestCase(unittest.TestCase):
         g_algo.load_from_json("../data/A5")
         g_algo.plot_graph()
 
+        graph4 = DiGraph()
+        g_algo3 = GraphAlgo(graph4)
+        graph4.add_node(0)
+        graph4.add_node(1)
+        graph4.add_node(2)
+        graph4.add_node(3)
+        graph4.add_edge(1, 2, 11)
+        graph4.add_edge(2, 1, 11)
+        graph4.add_edge(2, 3, 5)
+        graph4.add_edge(1, 0, 3)
+        g_algo3.plot_graph()
+
 
 if __name__ == '__main__':
     unittest.main()
