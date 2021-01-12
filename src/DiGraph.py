@@ -146,7 +146,7 @@ class DiGraph(GraphInterface):
         """
         return self.__dictEdgeOut.get(id1)
 
-    def __get_node(self, key: int) -> NodeData:
+    def get_node(self, key: int) -> NodeData:
         """
 
         """
@@ -159,29 +159,30 @@ class DiGraph(GraphInterface):
         self.__dictNode[node1].set_counter_edges_out(len(self.__dictEdgeOut[node1].keys()))
         self.__dictNode[node2].set_counter_edges_in(len(self.__dictEdgeIn[node2].keys()))
 
-    def __eq__(self, o) -> bool:
-
-        if type(o) is not DiGraph:
+    def __eq__(self, other) -> bool:
+        if type(other) is not DiGraph:
             return False
-        if self.v_size() != o.v_size():
+        if self.v_size() != other.v_size():
             return False
-        if self.e_size() != o.e_size():
+        if self.e_size() != other.e_size():
             return False
-        if self.get_mc() != o.get_mc():
+        if self.get_mc() != other.get_mc():
             return False
         for n in self.__dictNode.values():
-            if n.get_key() not in o.get_all_v().keys():
+            if n.get_key() not in other.get_all_v().keys():
                 return False
-            node = o.__get_node(n.get_key())
+
+            node = other.get_node(n.get_key())
+
             if not n == node:
                 return False
             for key, value in self.__dictEdgeOut[n.get_key()].items():
-                if key in o.__dictEdgeOut[n.get_key()].keys():
-                    if value != o.__dictEdgeOut[n.get_key()].get(key):
+                if key in other.__dictEdgeOut[n.get_key()].keys():
+                    if value != other.__dictEdgeOut[n.get_key()].get(key):
                         return False
             for key, value in self.__dictEdgeIn[n.get_key()].items():
-                if key in o.__dictEdgeIn[n.get_key()].keys():
-                    if value != o.__dictEdgeIn[n.get_key()].get(key):
+                if key in other.__dictEdgeIn[n.get_key()].keys():
+                    if value != other.__dictEdgeIn[n.get_key()].get(key):
                         return False
         return True
 

@@ -5,6 +5,7 @@ class NodeData(NodeDataInterface):
 
     def __init__(self, key: int, pos: tuple = None, weight: float = 0, info: str = ""):
         self.__key = key
+        self.__info = ""
         self.__pos = pos
         self.__weight = weight
         self.__info = info
@@ -91,7 +92,8 @@ class NodeData(NodeDataInterface):
             'pos': self.get_pos()
         }
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
+
         if type(other) is not NodeData:
             return False
         if other.__class__ != self.__class__:

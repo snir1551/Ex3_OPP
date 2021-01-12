@@ -54,5 +54,3 @@ class NodeDataInterface(ABC):
         Allows changing the remark (meta data) associated with this node.
         """
         pass
-
-
