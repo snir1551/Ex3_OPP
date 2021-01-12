@@ -2,7 +2,7 @@ import unittest
 from src.DiGraph import DiGraph
 from src.NodeData import NodeData
 from unittest import TestCase
-from src.EdgeData import EdgeData
+
 
 
 class TestDiGraph(TestCase):

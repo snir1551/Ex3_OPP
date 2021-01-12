@@ -5,11 +5,11 @@ from src.NodeData import NodeData
 
 class DiGraph(GraphInterface):
     def __init__(self):
-        self.__mc: int = 0
-        self.__edge_size: int = 0
-        self.__dictNode: Dict[int, NodeData] = dict()
-        self.__dictEdgeOut: Dict[int, Dict[int, float]] = dict()
-        self.__dictEdgeIn: Dict[int, Dict[int, float]] = dict()
+        self.__mc: int = 0  # number of the changes in the graph
+        self.__edge_size: int = 0  # number of the edges in the graph
+        self.__dictNode: Dict[int, NodeData] = dict()  # dict that contain key,NodeData
+        self.__dictEdgeOut: Dict[int, Dict[int, float]] = dict()  # dict for the edges that out of specific node
+        self.__dictEdgeIn: Dict[int, Dict[int, float]] = dict()  # dict for the edges that in to specific node
 
     def v_size(self) -> int:
         """
@@ -147,9 +147,15 @@ class DiGraph(GraphInterface):
         return self.__dictEdgeOut.get(id1)
 
     def get_node(self, key: int) -> NodeData:
+        """
+
+        """
         return self.__dictNode[key]
 
     def __update_in_out_size(self, node1, node2):
+        """
+        update for all nodes the: counter_edges_in, counter_edges_out
+        """
         self.__dictNode[node1].set_counter_edges_out(len(self.__dictEdgeOut[node1].keys()))
         self.__dictNode[node2].set_counter_edges_in(len(self.__dictEdgeIn[node2].keys()))
 
@@ -165,7 +171,9 @@ class DiGraph(GraphInterface):
         for n in self.__dictNode.values():
             if n.get_key() not in other.get_all_v().keys():
                 return False
+
             node = other.get_node(n.get_key())
+
             if not n == node:
                 return False
             for key, value in self.__dictEdgeOut[n.get_key()].items():
