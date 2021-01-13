@@ -42,10 +42,9 @@ NodeData.py implements NodeDataInterface interface <br />
 
 <a href='https://postimg.cc/4K6ygnXm' target='_blank'><img src='https://i.postimg.cc/8C36Lr3B/A5.png' border='0' alt='A5'/></a>
 
-<br />
-<br />
-<br />
-<br />
+
+
+
 
 <a name="p2"></a>
 ## Compare with Other:
