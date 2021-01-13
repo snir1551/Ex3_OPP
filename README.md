@@ -1,9 +1,9 @@
 # Ex3
 
 # Description
-* At this project we used with python 
-* We created classes that represent directed weighted graph and used some algorithms
-* In the next step we were suppose to compare our implementation performance vs NetworkX and Java implementation
+At this project we used with python 
+We created classes that represent directed weighted graph and used some algorithms
+In the next step we were suppose to compare our implementation performance vs NetworkX and Java implementation
 
 
 
