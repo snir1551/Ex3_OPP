@@ -4,12 +4,16 @@
 # Description
 At this project we used with python <br />
 We created classes that represent directed weighted graph and used some algorithms <br />
-In the next step we were suppose to compare our implementation performance vs NetworkX and Java implementation <br />
+we added the ability to plot graph and saving the graph to a json format and loading a graph from a json format  <br />
+At the last step, we were suppose to compare our implementation performance vs NetworkX and Java implementation <br />
 
 
 
 * [About the project](#p1)
-* [Compare with Other:](#p2)
+* [part 1](#p3)
+* [part 2](#p4)
+* [part 3](#p5)
+
 
 
 
@@ -28,6 +32,18 @@ In the next step we were suppose to compare our implementation performance vs Ne
 * we added the ability to plot graph and saving the graph to a json format and loading a graph from a json format. <br />
 * Comparing the graph performance vs NetworkX library and The java implementation from Ex2. <br />
 
+
+<a name="p3"></a>
+## Part 1:
+* At this part, we create class DiGraph.py that implements GraphInterface interface that represent a directed Weighted Graph  <br />
+  At This section we deals with the structure of the vertices,edges,weight and neighbors of the nodes
+* Juint tests.
+
+<a name="p4"></a>
+## Part 2:
+* At this part, we create cGraphAlgo.py that implements GraphAlgo Interface interface that represent futnction and algorithms on the graph which in the graph uses to perform the various tasks. etc algorithms: shortest path, connected component and more .
+In addition, the ability to plot graph(The Visual painting of the graph) and saving the graph to a json format and loading a graph from a json format<br />
+* Juint tests.
 
 
 ## Example to a graph with random positions:
@@ -48,11 +64,13 @@ In the next step we were suppose to compare our implementation performance vs Ne
 
 
 
-<a name="p2"></a>
-## Compare with Other:
-
+<a name="p5"></a>
+## Part 3:
 At this project we comparing the graph performance vs NetworkX library and The java implementation from Ex2.
 the results:
+
+
+
 
 # DiGraph class summary
 | Method  | Description  |
