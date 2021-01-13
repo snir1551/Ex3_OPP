@@ -23,7 +23,7 @@ Comparing the graph performance vs NetworkX library and The java implementation 
 
 Example to a graph with random positions
 
-<a href="http://www.up2me.co.il/v.php?file=61355077.jpg"><img src="http://www.up2me.co.il/thumbs/61355077.jpg" alt="Up2Me העלאת תמונות"  border="0" /></a>
+<a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/kMRyY7vg/Random.jpg' border='0' alt='Random'/></a>
 
 Example to a graph with given positions:
 A5 graph
