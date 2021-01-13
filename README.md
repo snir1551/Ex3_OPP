@@ -37,7 +37,7 @@ At the last step, we were suppose to compare our implementation performance vs N
 <a name="p3"></a>
 ## Part 1:
 * At this part, we create class DiGraph.py that implements GraphInterface interface that represent a directed Weighted Graph  <br />
-  At This section we deals with the structure of the vertices,edges,weight and neighbors of the nodes
+* At This section we deals with the structure of the vertices,edges,weight and neighbors of the nodes
 * Juint tests.
 
 <a name="p4"></a>
