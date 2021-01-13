@@ -19,9 +19,9 @@ In the next step we were suppose to compare our implementation performance vs Ne
 ## About the project:
 * At this project have 3 interface : GraphAlgoInterface.py ,GraphInterface.py , NodeDataInterface.py <br />
 
-* DiGraph.py implements GraphInterface interface  <br />
-* GraphAlgo.py implements GraphAlgoInterface interface <br />
-* NodeData.py implements NodeDataInterface interface <br />
+DiGraph.py implements GraphInterface interface  <br />
+GraphAlgo.py implements GraphAlgoInterface interface <br />
+NodeData.py implements NodeDataInterface interface <br />
 
 * we created Directed Weighted Graph but in python instead of java, and add a new method(etc strong connected components) <br />
 * we added the ability to plot graph and saving the graph to a json format and loading a graph from a json format. <br />
