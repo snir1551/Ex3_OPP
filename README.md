@@ -28,8 +28,7 @@ Example to a graph with random positions
 Example to a graph with given positions:
 A5 graph
 
-<a href="http://www.up2me.co.il/v.php?file=27281532.png"><img src="http://www.up2me.co.il/thumbs/27281532.png" alt="Up2Me העלאת תמונות"  border="0" /></a>
-
+<a href='https://postimg.cc/4K6ygnXm' target='_blank'><img src='https://i.postimg.cc/8C36Lr3B/A5.png' border='0' alt='A5'/></a>
 
 
 <a name="p2"></a>
