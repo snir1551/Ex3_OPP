@@ -21,11 +21,11 @@ def NetworkX():
         start = timeit.default_timer()
         nxlib.shortest_path(g, source=1, target=3, method="dijkstra", weight="weight")
         stop = timeit.default_timer()
-        print("time Shortest path NetworkX", stop - start)
+        print("time Shortest path NetworkX", {ve}, {ed}, stop - start)
         start = timeit.default_timer()
         nxlib.strongly_connected_components(g)
         stop = timeit.default_timer()
-        print("time components NetworkX", stop - start)
+        print("time components NetworkX", {ve}, {ed}, stop - start)
 
 
 def MyGraph():
@@ -37,15 +37,15 @@ def MyGraph():
         start = timeit.default_timer()
         graph_algo.shortest_path(1, 3)
         stop = timeit.default_timer()
-        print("time Shortest path MyGraph", stop - start)
+        print("time Shortest path MyGraph", {ve}, {ed}, stop - start)
         start = timeit.default_timer()
         graph_algo.connected_components()
         stop = timeit.default_timer()
-        print("time components MyGraph", stop - start)
+        print("time components MyGraph", {ve}, {ed}, stop - start)
         start = timeit.default_timer()
         graph_algo.connected_component(1)
         stop = timeit.default_timer()
-        print("time component MyGraph", stop - start)
+        print("time component MyGraph", {ve}, {ed}, stop - start)
 
 
 if __name__ == '__main__':
