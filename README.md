@@ -1,5 +1,5 @@
+# Directed Weighted Graph In Python
 
-# Ex3
 
 # Description
 At this project we used with python <br />
@@ -22,7 +22,7 @@ At the last step, we were suppose to compare our implementation performance vs N
 
 <a name="p1"></a>
 ## About the project:
-* At this project have 3 interface : GraphAlgoInterface.py ,GraphInterface.py , NodeDataInterface.py <br />
+* At this project have 3 abstract class that represents an interface : GraphAlgoInterface.py ,GraphInterface.py , NodeDataInterface.py <br />
 
   DiGraph.py implements GraphInterface interface  <br />
   GraphAlgo.py implements GraphAlgoInterface interface <br />
@@ -36,15 +36,15 @@ At the last step, we were suppose to compare our implementation performance vs N
 
 <a name="p3"></a>
 ## Part 1:
-* At this part, we create class DiGraph.py that implements GraphInterface interface that represent a directed Weighted Graph  <br />
+* At this part, we create class DiGraph.py that implements GraphInterface abstract that represents an interface that represent a directed Weighted Graph  <br />
 * At This section we deals with the structure of the vertices,edges,weight and neighbors of the nodes
-* Juint tests.
+* unit test.
 
 <a name="p4"></a>
 ## Part 2:
-* At this part, we create cGraphAlgo.py that implements GraphAlgo Interface interface that represent futnction and algorithms on the graph which in the graph uses to perform the various tasks. example of the algorithms: shortest path, connected component and more .
+* At this part, we create class GraphAlgo.py that implements GraphAlgo  abstract that represents an interface that represent futnction and algorithms on the graph. example of the algorithms: shortest path, connected component and more .
 * In addition, the ability to plot graph(The Visual painting of the graph) and saving the graph to a json format and loading a graph from a json format <br />
-* Juint tests.
+* unit test.
 
 
 **Example to a graph with random positions:**
