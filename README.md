@@ -32,6 +32,8 @@ At the last step, we were suppose to compare our implementation performance vs N
 * we added the ability to plot graph and saving the graph to a json format and loading a graph from a json format. <br />
 * Comparing the graph performance vs NetworkX library and The java implementation from Ex2. <br />
 
+<br />
+<br />
 
 <a name="p3"></a>
 ## Part 1:
