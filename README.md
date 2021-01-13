@@ -42,7 +42,7 @@ At the last step, we were suppose to compare our implementation performance vs N
 <a name="p4"></a>
 ## Part 2:
 * At this part, we create cGraphAlgo.py that implements GraphAlgo Interface interface that represent futnction and algorithms on the graph which in the graph uses to perform the various tasks. etc algorithms: shortest path, connected component and more .
-In addition, the ability to plot graph(The Visual painting of the graph) and saving the graph to a json format and loading a graph from a json format<br />
+* In addition, the ability to plot graph(The Visual painting of the graph) and saving the graph to a json format and loading a graph from a json format<br />
 * Juint tests.
 
 
