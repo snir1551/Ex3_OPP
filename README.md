@@ -1,4 +1,4 @@
-<p style="color:#FF0000";># Directed Weighted Graph In Python</p>
+<p style="color:#FF0000";>Directed Weighted Graph In Python</p>
 
 # Description
 At this project we used with python <br />
