@@ -28,14 +28,14 @@ Comparing the graph performance vs NetworkX library and The java implementation 
 
 
 
-**Example to a graph with random positions:**
+## Example to a graph with random positions:
 
 
 <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/kMRyY7vg/Random.jpg' border='0' alt='Random'/></a>
 
 
 
-**Example to a graph with given positions:**
+## Example to a graph with given positions:
 **A5 graph**
     
     
