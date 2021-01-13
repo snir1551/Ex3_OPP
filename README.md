@@ -76,12 +76,7 @@ the results:
 
         Note: if the node id already exists the node will not be added|
 | remove_node(int)|gets the number of edges in the graph.|
-| remove_edge(int id1,int id2)| Removes an edge from the graph.
-        @param node_id1: The start node of the edge
-        @param node_id2: The end node of the edge
-        @return: True if the edge was removed successfully, False o.w.
-
-        Note: If such an edge does not exists the function will do nothing|
+| remove_edge(int id1,int id2)| Removes an edge from the graph.node_id1: The start node of the edge.node_id2: The end node of the edge.return: True if the edge was removed successfully, False o.w..Note: If such an edge does not exists the function will do nothing|
 |.repr()| Returns a string representation of the graph|
 
 
@@ -94,12 +89,9 @@ the results:
 | shortest_path(int src, int dst)| returns the shortest path from node src to node dst using Dijkstra's Algorithm|
 | connected_component(int key)| finds the Strongly Connected Component(SCC) that node key is a part of |
 | connected_components()|Finds all the Strongly Connected Component(SCC) in the graph |
-| plot_graph()| Plots the graph.
-        If the nodes have a position, the nodes will be placed there|
-        Otherwise, they will be placed in a random but elegant manner|
-| __encoder()| This method help to building a json object in our format.
-        note: use in the save function.|
-| __dijkstra(NodeData)| private function, part of the shortest_path function.
+| plot_graph()| Plots the graph.If the nodes have a position, the nodes will be placed there.Otherwise, they will be placed in a random but elegant manner|
+| __encoder()| This method help to building a json object in our format.note: use in the save function |
+| __dijkstra(NodeData)| private function, part of the shortest_path function |
 
 
 
