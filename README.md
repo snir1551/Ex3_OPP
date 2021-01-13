@@ -22,7 +22,7 @@ At the last step, we were suppose to compare our implementation performance vs N
 
 <a name="p1"></a>
 ## About the project:
-* At this project have 3 interface : GraphAlgoInterface.py ,GraphInterface.py , NodeDataInterface.py <br />
+* At this project have 3 abstract class that represents an interface : GraphAlgoInterface.py ,GraphInterface.py , NodeDataInterface.py <br />
 
   DiGraph.py implements GraphInterface interface  <br />
   GraphAlgo.py implements GraphAlgoInterface interface <br />
