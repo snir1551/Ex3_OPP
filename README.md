@@ -73,7 +73,7 @@ the results:
 
 
 
-# DiGraph class summary
+# DiGraph class
 | Method  | Description  |
 | :------ |:-------------| 
 | v_size()| Returns the number of vertices in this graph |
@@ -89,7 +89,7 @@ the results:
 |.repr()| Returns a string representation of the graph|
 
 
-# GraphAlgo class summary
+# GraphAlgo class 
 | Method  | Description  |
 | :------ |:-------------| 
 | get_graph | return: the directed graph on which the algorithm works on|
