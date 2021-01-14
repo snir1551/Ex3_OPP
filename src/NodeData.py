@@ -81,7 +81,7 @@ class NodeData(NodeDataInterface):
 
     def encoder(self):
         """
-
+        use for conversion of json
         """
         if self.get_pos() is None:
             return {

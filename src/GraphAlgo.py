@@ -103,10 +103,10 @@ class GraphAlgo(GraphAlgoInterface):
     # =================== Connected Component Function =================== #
     def connected_component(self, id1: int) -> list:
         """
+        iterative algorithm tarjan
         Finds the Strongly Connected Component(SCC) that node id1 is a part of.
         @param id1: The node id
         @return: The list of nodes in the SCC
-
         Notes:
         If the graph is None or id1 is not in the graph, the function should return an empty list []
         """
@@ -167,9 +167,9 @@ class GraphAlgo(GraphAlgoInterface):
     # =================== Connected Component Function =================== #
     def connected_components(self) -> List[list]:
         """
+        iterative Algorithm tarjan
         Finds all the Strongly Connected Component(SCC) in the graph.
         @return: The list all SCC
-
         Notes:
         If the graph is None the function should return an empty list []
         """
@@ -257,7 +257,7 @@ class GraphAlgo(GraphAlgoInterface):
             my_nodes.append(k)
         _, ax = my_plot.subplots()
         for pos, val in enumerate(my_nodes):
-            ax.annotate(my_nodes[pos], (listX[pos], listY[pos]))
+            ax.annotate(my_nodes[pos], (listX[pos], listY[pos] + 0.0001), color="blue")
         for src in self.__graph.get_all_v().keys():
             for dest, w in self.__graph.all_out_edges_of_node(src).items():
                 src1 = self.__graph.get_all_v().get(src)
@@ -269,7 +269,9 @@ class GraphAlgo(GraphAlgoInterface):
                 my_plot.arrow(x1, y1, (x2 - x1), (y2 - y1), length_includes_head=True,
                               width=0.000003, head_width=0.00015, color='green', zorder=1)
         my_plot.scatter(listX, listY, color="red", s=50, zorder=2)
-        my_plot.title("Our Graph")
+        str_graph = "Directed Weighted Graph: " + str(self.__graph.v_size()) + " nodes " + str(
+            self.__graph.e_size()) + " edges "
+        my_plot.title(str_graph)
         my_plot.show()
 
     # =================== Encoder Function =================== #
