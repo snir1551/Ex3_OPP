@@ -8,8 +8,6 @@ we added the ability to plot graph and saving the graph to a json format and loa
 At the last step, we were suppose to compare our implementation performance vs NetworkX and Java implementation <br />
 
 
-
-* [About the project](#p1)
 * [part 1](#p3)
 * [part 2](#p4)
 * [part 3](#p5)
@@ -19,18 +17,6 @@ At the last step, we were suppose to compare our implementation performance vs N
 
 
 
-
-<a name="p1"></a>
-## About the project:
-* At this project have 3 abstract class that represents an interface : GraphAlgoInterface.py ,GraphInterface.py , NodeDataInterface.py <br />
-
-  DiGraph.py implements GraphInterface interface  <br />
-  GraphAlgo.py implements GraphAlgoInterface interface <br />
-  NodeData.py implements NodeDataInterface interface <br />
-
-* we created Directed Weighted Graph but in python instead of java, and add a new methods(strong connected components etc) <br />
-* we added the ability to plot graph and saving the graph to a json format and loading a graph from a json format. <br />
-* Comparing the graph performance vs NetworkX library and The java implementation from Ex2. <br />
 
 
 
