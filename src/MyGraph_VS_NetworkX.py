@@ -9,7 +9,7 @@ def NetworkX():
     nodes = [10, 100, 1000, 10000, 20000, 30000]
     edges = [80, 800, 8000, 80000, 160000, 240000]
     for ve, ed in zip(nodes, edges):
-        with open(f"../data/G_{ve}_{ed}_0.json", 'r') as file:
+        with open(f"../data/Graphs_on_circle/G_{ve}_{ed}_1.json", 'r') as file:
             object = json.load(file)
 
         for x in object['Nodes']:
@@ -21,11 +21,11 @@ def NetworkX():
         start = timeit.default_timer()
         nxlib.shortest_path(g, source=1, target=3, method="dijkstra", weight="weight")
         stop = timeit.default_timer()
-        print("time Shortest path NetworkX", stop - start)
+        print("time Shortest path NetworkX", {ve}, {ed}, stop - start)
         start = timeit.default_timer()
         nxlib.strongly_connected_components(g)
         stop = timeit.default_timer()
-        print("time components NetworkX", stop - start)
+        print("time components NetworkX", {ve}, {ed}, stop - start)
 
 
 def MyGraph():
@@ -33,19 +33,19 @@ def MyGraph():
     edges = [80, 800, 8000, 80000, 160000, 240000]
     graph_algo = GraphAlgo()
     for ve, ed in zip(nodes, edges):
-        graph_algo.load_from_json(f"../data/G_{ve}_{ed}_0.json")
+        graph_algo.load_from_json(f"../data/Graphs_on_circle/G_{ve}_{ed}_1.json")
         start = timeit.default_timer()
         graph_algo.shortest_path(1, 3)
         stop = timeit.default_timer()
-        print("time Shortest path MyGraph", stop - start)
+        print("time Shortest path MyGraph", {ve}, {ed}, stop - start)
         start = timeit.default_timer()
         graph_algo.connected_components()
         stop = timeit.default_timer()
-        print("time components MyGraph", stop - start)
+        print("time components MyGraph", {ve}, {ed}, stop - start)
         start = timeit.default_timer()
         graph_algo.connected_component(1)
         stop = timeit.default_timer()
-        print("time component MyGraph", stop - start)
+        print("time component MyGraph", {ve}, {ed}, stop - start)
 
 
 if __name__ == '__main__':

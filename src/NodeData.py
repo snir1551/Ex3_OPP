@@ -5,7 +5,6 @@ class NodeData(NodeDataInterface):
 
     def __init__(self, key: int, pos: tuple = None, weight: float = 0, info: str = ""):
         self.__key = key
-        self.__info = ""
         self.__pos = pos
         self.__weight = weight
         self.__info = info
