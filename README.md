@@ -36,7 +36,6 @@ At the last step, we were suppose to compare our implementation performance vs N
 **Example to a graph with random positions:**
 
 
-<a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/kMRyY7vg/Random.jpg' border='0' alt='Random'/></a>
 
 
 
@@ -44,8 +43,7 @@ At the last step, we were suppose to compare our implementation performance vs N
 **A5 graph**
     
     
-
-<a href='https://postimg.cc/4K6ygnXm' target='_blank'><img src='https://i.postimg.cc/8C36Lr3B/A5.png' border='0' alt='A5'/></a>
+<a href="https://ibb.co/g3VMPD6"><img src="https://i.ibb.co/R9ypBC7/1.png" alt="1" border="0"></a>
 
 
 
