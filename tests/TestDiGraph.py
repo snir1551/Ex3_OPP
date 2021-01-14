@@ -4,7 +4,6 @@ from src.NodeData import NodeData
 from unittest import TestCase
 
 
-
 class TestDiGraph(TestCase):
     def test_add_node(self):
         graph = DiGraph()
@@ -284,9 +283,6 @@ class TestDiGraph(TestCase):
         graph_check.add_edge(3, 4, -5)
         self.assertTrue(graph_check.get_mc() == 7)
 
-
-
-
     def test_all_in_edges_of_node(self):
         graph = DiGraph()
 
@@ -346,6 +342,25 @@ class TestDiGraph(TestCase):
         ans_list_keys = [node0.get_key()]
         for i in ans_list_keys:
             self.assertIn(i, graph.all_out_edges_of_node(node1.get_key()).keys())
+
+    def test_equal(self):
+        node11 = NodeData(1)
+        node12 = NodeData(2)
+        node13 = NodeData(3)
+        graph_one_test = DiGraph()
+        graph_one_test.add_node(node11.get_key(), (10, 20, 30))
+        graph_one_test.add_node(node12.get_key(), (10, 20, 30))
+        graph_one_test.add_node(node13.get_key(), (10, 20, 30))
+
+        node110 = NodeData(1)
+        node120 = NodeData(2)
+        node130 = NodeData(3)
+        graph_two_test = DiGraph()
+        graph_two_test.add_node(node110.get_key(), (10, 20, 30))
+        graph_two_test.add_node(node120.get_key(), (10, 20, 30))
+        graph_two_test.add_node(node130.get_key(), (10, 20, 30))
+        self.assertFalse(graph_one_test is graph_two_test)
+        self.assertTrue(graph_one_test == graph_two_test)
 
 
 if __name__ == '__main__':

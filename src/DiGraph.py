@@ -172,10 +172,6 @@ class DiGraph(GraphInterface):
             if n.get_key() not in other.get_all_v().keys():
                 return False
 
-            node = other.get_node(n.get_key())
-
-            if not n == node:
-                return False
             for key, value in self.__dictEdgeOut[n.get_key()].items():
                 if key in other.__dictEdgeOut[n.get_key()].keys():
                     if value != other.__dictEdgeOut[n.get_key()].get(key):

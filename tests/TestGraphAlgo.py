@@ -259,14 +259,18 @@ class MyTestCase(unittest.TestCase):
         g_algo = GraphAlgo(graph)
         g_algo.save_to_json("file1")
 
-        # new_graph_algo = GraphAlgo(None)
-        #  new_graph_algo.load_from_json("file1")
-        # self.assertEqual(new_graph_algo.get_graph(), g_algo.get_graph()) ##to ask
-        #  self.assertTrue(new_graph_algo.get_graph().get_mc() == 8)
-        #  self.assertTrue(new_graph_algo.get_graph().v_size() == 4)
-        #  self.assertTrue(new_graph_algo.get_graph().e_size() == 4)
-        # new_graph_algo.get_graph().remove_node(0)
-        #  self.assertNotEqual(new_graph_algo.get_graph(), g_algo.get_graph())
+        new_graph_algo = GraphAlgo(None)
+        new_graph_algo.load_from_json("file1")
+        same_graph = new_graph_algo
+
+        self.assertEqual(same_graph.get_graph(), new_graph_algo.get_graph())
+        self.assertEqual(new_graph_algo.get_graph(), g_algo.get_graph())
+
+        self.assertTrue(new_graph_algo.get_graph() == g_algo.get_graph())  ##to ask
+        self.assertTrue(new_graph_algo.get_graph().get_mc() == 8)
+        self.assertTrue(new_graph_algo.get_graph().v_size() == 4)
+        self.assertTrue(new_graph_algo.get_graph().e_size() == 4)
+
 
     def test_connected_component(self):
         #  print("check0 connected_component ")
@@ -308,7 +312,7 @@ class MyTestCase(unittest.TestCase):
         #  print("check2 connected_component ")
 
         """
-
+    
                     0------>1------>2<------>3
                     ↑     / |       |        ↑
                     |    /  |       |        |
@@ -317,7 +321,7 @@ class MyTestCase(unittest.TestCase):
                     | ↓     ↓       ↓        ↓
                     7------>6<----->5<-------4
                            (7)
-
+    
                """
 
         g_algo2 = GraphAlgo(first_graph())
@@ -354,7 +358,7 @@ class MyTestCase(unittest.TestCase):
                    | ↓          ↓ ↓
                    1<------------>2
                           (7)
-
+    
               """
 
         g_algo3 = GraphAlgo(second_graph())
@@ -374,7 +378,7 @@ class MyTestCase(unittest.TestCase):
         #  print("check4 connected_component ")
         """
                                5
-
+    
                         (2)    (11)
                      6<----->3<---->4
                      ↑     ↑  ↑     ↑
@@ -384,7 +388,7 @@ class MyTestCase(unittest.TestCase):
                      ↓ ↓          ↓ ↓
                      1<------------>2
                             (7)
-
+    
                 """
 
         g_algo4 = GraphAlgo(three_graph())
@@ -432,6 +436,7 @@ class MyTestCase(unittest.TestCase):
         my_list = [5]
         self.assertEqual(my_list, g_algo5.connected_component(5))
 
+
     def test_connected_components(self):
         #  print("check0 connected_components ")
         graph1 = DiGraph()
@@ -461,7 +466,7 @@ class MyTestCase(unittest.TestCase):
         #  print("check2 connected_components ")
 
         """
-
+    
                     0------>1------>2<------>3
                     ↑     / |       |        ↑
                     |    /  |       |        |
@@ -470,7 +475,7 @@ class MyTestCase(unittest.TestCase):
                     | ↓     ↓       ↓        ↓
                     7------>6<----->5<-------4
                            (7)
-
+    
                """
         g_algo8 = GraphAlgo(first_graph())
         my_list = [[0, 1, 7], [2, 3, 4], [5, 6]]
@@ -491,7 +496,7 @@ class MyTestCase(unittest.TestCase):
                    | ↓          ↓ ↓
                    1<------------>2
                           (7)
-
+    
               """
         g_algo9 = GraphAlgo(second_graph())
         my_list = [[1, 2, 4, 3, 6, 5]]
@@ -500,7 +505,7 @@ class MyTestCase(unittest.TestCase):
         #  print("check4 connected_components ")
         """
                                5
-
+    
                         (2)    (11)
                      6<----->3<---->4
                      ↑     ↑  ↑     ↑
@@ -510,7 +515,7 @@ class MyTestCase(unittest.TestCase):
                      ↓ ↓          ↓ ↓
                      1<------------>2
                             (7)
-
+    
                 """
         g_algo10 = GraphAlgo(three_graph())
         my_list = [[5], [1, 2, 4, 3, 6]]
@@ -520,7 +525,7 @@ class MyTestCase(unittest.TestCase):
 
         """
         4<-0->1  2->3  4->0  5
-
+    
                        """
         graph4 = DiGraph()
         g_algo11 = GraphAlgo(graph4)
@@ -536,6 +541,7 @@ class MyTestCase(unittest.TestCase):
         graph4.add_edge(4, 0, 3)
         my_list = [[5], [2], [3], [0, 4], [1]]
         self.assertEqual(my_list, g_algo11.connected_components())
+
 
     def test_plot_graph(self):
         graph4 = DiGraph()

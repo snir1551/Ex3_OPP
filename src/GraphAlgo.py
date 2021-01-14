@@ -79,16 +79,16 @@ class GraphAlgo(GraphAlgoInterface):
         More info:
         https://en.wikipedia.org/wiki/Dijkstra's_algorithm
         """
-        list = []
+
         nodes: Dict[int, NodeData] = self.__graph.get_all_v()
         if self.__graph is None or id1 not in self.__graph.get_all_v() or id2 not in self.__graph.get_all_v():
             return math.inf, []
         if id1 is id2:
-            list.append(nodes[id1].get_key())
-            return 0, list
+            return 0, [id1]
 
-        pv: Dict[int, NodeData] = self.__dijkstra(nodes[id1])
-        if nodes[id2].get_info().__eq__("WHITE"):
+        list = []
+        pv: Dict[int, NodeData] = self.__dijkstra(nodes[id1], nodes[id2])
+        if nodes[id2].get_info() == "WHITE":
             return math.inf, []
 
         list.append(id2)
@@ -289,7 +289,7 @@ class GraphAlgo(GraphAlgoInterface):
         return dic
 
     # =================== Algorithm Dijkstra =================== #
-    def __dijkstra(self, start_node: NodeData):
+    def __dijkstra(self, start_node: NodeData, dest_node: NodeData):
         """
         This method marks on each vertex the distance to the source vertex and
         @return path - Dict[int, NodeData] that the shortest path from start_node
@@ -306,16 +306,23 @@ class GraphAlgo(GraphAlgoInterface):
         start_node.set_weight(0)
         while not q.empty():
             v: NodeData = q.get()
+            if v.get_info() == "WHITE":
+                v.set_info("GRAY")
+            else:
+                continue
+            if v.get_key() == dest_node.get_key():
+                return path
+
             for k, w in self.__graph.all_out_edges_of_node(v.get_key()).items():
                 n: NodeData = nodes[k]
-                weight = v.get_weight() + w
-                if weight < n.get_weight():
-                    q.put(n)
-                    n.set_weight(weight)
-                    path[n.get_key()] = v
+                if n.get_info() == "WHITE":
+                    weight = v.get_weight() + w
+                    if weight < n.get_weight():
+                        q.put(n)
+                        n.set_weight(weight)
+                        path[n.get_key()] = v
             v.set_info("BLACK")
         return path
-
 
 
 if __name__ == '__main__':
